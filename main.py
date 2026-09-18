@@ -19,6 +19,11 @@ def main() -> None
         "sum": 3587267375257.0
     }
 
+    processor.generate_outputs()
+
+    bench_results = processor.run_numpy_benchmark()
+
+    
     val_df = run_reconciliation_checks(processor, customs_reference)
     os.makedirs(CONFIG["output_dir"], exist_ok=True)
     val_df.to_csv(os.path.join(CONFIG["output_dir"], "validation.csv"), index=False)
