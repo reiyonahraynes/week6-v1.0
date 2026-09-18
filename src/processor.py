@@ -147,3 +147,24 @@ class CustomsAnalyzer:
         work = df.copy()
         work[cat_first] = work[cat_first].fillna("MISSING")
         work[cat_second] = work[cat_second].fillna("MISSING")
+        grouped = (
+            work.groupby(cat_first, dropna=False)
+            .agg(
+                row_count=(measure_col, "size"),
+                valid_measure_count=(measure_col, "count"),
+                sum=(measure_col, "sum"),
+                mean=(measure_col, "mean"),
+            )
+            .reset_index()
+        )
+        grouped["missing_measure"] = grouped["row_count"] - grouped["valid_measure_count"]
+
+        # --- grouped_two.csv: group by both categories, named aggs ------
+        grouped_two = (
+            work.groupby([cat_first, cat_second], dropna=False)
+            .agg(
+                row_count=(measure_col, "size"),
+                sum=(measure_col, "sum"),
+            )
+            .reset_index()
+        )
