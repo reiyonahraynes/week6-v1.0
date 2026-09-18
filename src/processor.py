@@ -193,3 +193,28 @@ class CustomsAnalyzer:
     def get_top10(self, grouped_df: pd.DataFrame) -> pd.DataFrame:
         top10 = grouped_df.sort_values(by="sum", ascending=False).head(10)
         return top10
+
+#bar chart of top 10
+top10 = analyzer.get_top10(analyzer.get_grouped(df))
+sum_col = f"{config['measure_column']}_sum"
+labels = top10[config["category_first"]].astype(str) + " / " + top10[config["category_second"]].astype(str)
+
+plt.figure(figsize=(10, 6))
+plt.bar(labels, top10[sum_col])
+plt.xticks(rotation=45, ha="right")
+plt.ylabel(sum_col)
+plt.title("Top 10")
+plt.tight_layout()
+plt.savefig("bar.png", dpi=150)
+plt.show()
+
+#heat map of pivot excluding margins
+pivot = analyzer.get_pivot(df)
+pivot_no_margins = pivot.drop(index="Total", errors="ignore").drop(columns="Total", errors="ignore")
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(pivot_no_margins, annot=True, fmt=".0f", cmap="viridis")
+plt.title("Pivot Heatmap (excluding margins)")
+plt.tight_layout()
+plt.savefig("heatmap.png", dpi=150)
+plt.show()
