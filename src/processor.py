@@ -168,3 +168,28 @@ class CustomsAnalyzer:
             )
             .reset_index()
         )
+    def get_pivot(self, df: pd.DataFrame) -> pd.DataFrame:
+        cat_first = self.config["category_first"]
+        cat_second = self.config["category_second"]
+        measure = self.config["measure_column"]
+
+        work = df.copy()
+        work[cat_first] = work[cat_first].fillna("MISSING")
+        work[cat_second] = work[cat_second].fillna("MISSING")
+
+        pivot_table = pd.pivot_table(
+            work,
+            values=measure,
+            index=cat_first,
+            columns=cat_second,
+            aggfunc="sum",
+            margins=True,
+            margins_name="Total",
+            dropna=False
+        )
+
+        return pivot_table
+
+    def get_top10(self, grouped_df: pd.DataFrame) -> pd.DataFrame:
+        top10 = grouped_df.sort_values(by="sum", ascending=False).head(10)
+        return top10
