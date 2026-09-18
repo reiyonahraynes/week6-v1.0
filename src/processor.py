@@ -67,24 +67,10 @@ def load_data(
 # Filter, derive and summarize
 
 class CustomsAnalyzer:
-    """Filter, transform, and summarize Philippine Customs import records.
 
-    Attributes:
-        df: The raw (unfiltered) input DataFrame.
-        config: The configuration dictionary (see config.py).
-        excluded_df: Populated by filter_records(); rows dropped by the
-            filter, kept for reconciliation.
-        filter_breakdown: Populated by filter_records(); counts explaining
-            *why* each excluded row was dropped.
-    """
 
     def __init__(self, df: pd.DataFrame, config: Dict[str, Any]) -> None:
-        """Store the raw data and configuration for later processing.
-
-        Args:
-            df: Raw, unfiltered input DataFrame (one row per shipment record).
-            config: Configuration dictionary produced by config.py.
-        """
+       
         self.df = df
         self.config = config
         self.excluded_df: pd.DataFrame = pd.DataFrame()
