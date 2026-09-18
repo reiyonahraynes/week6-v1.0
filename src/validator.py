@@ -37,3 +37,14 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
     })
 
     return pd.DataFrame(checks)
+
+def write_audit_log(records: List[Dict[str, Any]], output_path: str) -> None:
+    
+    df = pd.DataFrame(records, columns=["step", "operation", "rule", "rows_before", "rows_after"])
+    df.to_csv(output_path, index=False)
+
+
+
+
+
+
