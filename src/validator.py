@@ -111,14 +111,13 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
     })
 
     benchmark = processor_obj.run_numpy_benchmark()
-     hecks.append({
+    checks.append({
         "check": "Loop vs Vectorized Agreement",
         "expected": 0.0,
         "actual": benchmark["max_abs_difference"],
         "tolerance": processor_obj.config["float_abs_tolerance"],
         "pass": benchmark["results_equal"]
     })
-
 
 
 
