@@ -330,13 +330,7 @@ def plot_heatmap(
 
 
 class DataProcessor:
-    """Runs the whole pipeline behind a small, stateful interface.
-
-    Wraps load_data(), CustomsAnalyzer, compare_loop_vs_vectorized(), and
-    the plotting functions above, and remembers intermediate results so a
-    caller can drive the pipeline step by step instead of threading
-    DataFrames through by hand.
-    """
+    
 
     def __init__(self, config: Dict[str, Any]) -> None:
         self.config = config
