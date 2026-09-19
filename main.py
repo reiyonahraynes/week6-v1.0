@@ -1,6 +1,7 @@
 import os
+import sys
 import pandas as pd
-from config import CONFIG
+from config import CONFIG, REQUIRED_COLUMNS
 from src.processor import DataProcessor
 from src.validator import run_reconciliation_checks
 
@@ -50,6 +51,7 @@ def main() -> None
     
     customs_reference = {
         "rows": 2236612,
+        "columns": 30,
         "sum": 3587267375257.0
     }
 
