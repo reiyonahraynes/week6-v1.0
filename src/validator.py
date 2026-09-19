@@ -51,7 +51,7 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
 
     
     
-    total_split = len(processor_obj.selected_df) + len(processor_obj.excluded_df)
+    total_split = len(processor_obj.filtered_df) + len(processor_obj.analyzer.excluded_df)    
     checks.append({
         "check": "Row Partitioning (Selected + Excluded = Raw)",
         "expected": len(processor_obj.raw_df),
