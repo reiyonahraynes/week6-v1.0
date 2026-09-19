@@ -1,3 +1,4 @@
+from typing import Any
 
 REQUIRED_COLUMNS: set[str] = {
     "uid",
@@ -9,7 +10,7 @@ REQUIRED_COLUMNS: set[str] = {
 }
 
 
-DTYPE_MAP: dict[str, any] = {
+DTYPE_MAP: dict[str, Any] = {    
     "uid": str,
     "ty": str,
     "tq": str,
@@ -43,8 +44,8 @@ DTYPE_MAP: dict[str, any] = {
 }
 
 
-CONFIG: dict[str, any] = {
-    # --- input ---
+CONFIG: dict[str, Any] = {
+    
     "input_path": "data/2015.csv",
     "encoding": "latin1",         
     "chunksize": 300_000,          
