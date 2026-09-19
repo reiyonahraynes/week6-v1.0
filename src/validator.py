@@ -81,8 +81,8 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
                               rel_tol=processor_obj.config["money_rel_tolerance"])
     })
 
-     pivot_interior_sum = float(np.nansum(processor_obj.pivot_no_margins.to_numpy()))
-     checks.append({
+    pivot_interior_sum = float(np.nansum(processor_obj.pivot_no_margins.to_numpy()))
+    checks.append({
         "check": "Pivot Interior Sum vs Independent Sum",
         "expected": independent_sum,
         "actual": pivot_interior_sum,
@@ -91,8 +91,8 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
                               rel_tol=processor_obj.config["money_rel_tolerance"])
     })
 
-     top10_sum_total = float(processor_obj.top10["sum"].sum())
-     checks.append({
+    top10_sum_total = float(processor_obj.top10["sum"].sum())
+    checks.append({
         "check": "Bar Chart Values Match Top10 Table",
         "expected": top10_sum_total,
         "actual": top10_sum_total,
@@ -100,8 +100,8 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
         "pass": True
     })
 
-     heatmap_sum = float(np.nansum(processor_obj.pivot_no_margins.to_numpy()))
-     checks.append({
+    heatmap_sum = float(np.nansum(processor_obj.pivot_no_margins.to_numpy()))
+    checks.append({
         "check": "Heatmap Values Match Pivot Table",
         "expected": pivot_interior_sum,
         "actual": heatmap_sum,
@@ -110,8 +110,8 @@ def run_reconciliation_checks(processor_obj, ref_totals: Dict[str, Any] = None) 
                               rel_tol=processor_obj.config["money_rel_tolerance"])
     })
 
-     benchmark = processor_obj.run_numpy_benchmark()
-     checks.append({
+    benchmark = processor_obj.run_numpy_benchmark()
+     hecks.append({
         "check": "Loop vs Vectorized Agreement",
         "expected": 0.0,
         "actual": benchmark["max_abs_difference"],
